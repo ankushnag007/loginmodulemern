@@ -37,7 +37,7 @@ const Login = () => {
     <>
       <div></div>
       <h1 className="text-3xl font-bold ">Firebase Auth</h1>
-      <div className="card">
+      <div className="h-full w-full flex items-center justify-center p-10 b-gradient-to-br from-indigo-50 to-blue-100">
         <button
           className="flex flex-row items-center justify-center gap-2"
           onClick={googleLogin}
