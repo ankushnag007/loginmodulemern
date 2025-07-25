@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { auth, provider } from "../utils/firebase";
 import { signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
-
-const  Login = ()=> {
-  const [count, setCount] = useState(0);
+const Login = () => {
+  const [userData, setUserData] = useState(null);
+  const navigate = useNavigate(); 
 
   const googleLogin = async () => {
     try {
@@ -17,29 +18,21 @@ const  Login = ()=> {
         avatar: user.photoURL,
         phoneNumber: user.phoneNumber,
       };
+      console.log(userData, "userData");
 
-      const apiResponse = await fetch(
-        "http://localhost:4000/api/auth/google-login",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "content-type": "Loginlication/json",
-          },
-          body: JSON.stringify(userData),
-        }
-      );
-
-      if (!apiResponse.ok) {
-        throw new Error("error fetching login");
-      }
-
-      const data = await apiResponse.json();
-      console.log(data);
+      localStorage.setItem("user", JSON.stringify(userData));
+      setUserData(userData);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (userData) {
+      navigate("/dashboard");
+    }
+  }, [userData, navigate]);  
+
   return (
     <>
       <div></div>
@@ -59,6 +52,6 @@ const  Login = ()=> {
       </div>
     </>
   );
-}
+};
 
 export default Login;
