@@ -34,9 +34,9 @@ const UserDashboard = () => {
 
     if (!user) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-blue-100 max-w-full rounded-lg">
+            <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">
-                    <div className="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                    <div className="w-16 h-16"></div>
                     <p className="mt-4 text-indigo-700">Loading your dashboard...</p>
                 </div>
             </div>
@@ -44,7 +44,7 @@ const UserDashboard = () => {
     }
 
     return (
-        <div className="h-screen relative overflow-hidden bg-gradient-to-br from-indigo-50 to-blue-100 p-4 md:p-8 w-full">
+        <div className="h-screen  overflow-hidden p-4 md:p-8 w-full">
             <div className="absolute inset-0 overflow-hidden">
                 {[...Array(15)].map((_, i) => (
                     <motion.div
